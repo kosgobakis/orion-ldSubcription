@@ -1,0 +1,58 @@
+#!/bin/bash
+#
+#  curl commands to reload the data from the previous tutorial
+##  for unitCode see https://unece.org/fileadmin/DAM/cefact/recommendations/rec20/rec20_rev3_Annex3e.pdf
+
+#
+
+set -e
+
+
+export $(cat .env | grep "#" -v)
+
+
+printf "⏳ Provisioning IoT devices "
+#define the abilities and attributs of the sensors
+curl -iL -X POST \
+  'http://localhost:'"${IOTA_NORTH_PORT}"'/iot/services' \
+  -H 'Content-Type: application/json' \
+  -H 'fiware-service: openiot' \
+  -H 'fiware-servicepath: /' \
+  -d '{
+ "services": [
+   {
+     "apikey":      "'"${TemperatureSensor_API}"'",
+     "cbroker":     "http://orion:1026",
+     "entity_type": "TemperatureSensor",
+     "resource":    "/iot/d",
+     "protocol":    "PDI-IoTA-UltraLight",
+     "transport":   "HTTP",
+     "timezone":    "Europe/Athens",
+     "attributes": [
+       { "object_id": "t", "name":"temperature", "type": "Integer",
+         "metadata": {"unitCode": {"type": "Property","value": "CEL"}}
+       }
+      ]
+   }
+   ]
+}'
+
+
+# commition the name and number of sensors 
+curl -iL -X POST \
+  'http://localhost:'"${IOTA_NORTH_PORT}"'/iot/devices' \
+  -H 'Content-Type: application/json' \
+  -H 'fiware-service: openiot' \
+  -H 'fiware-servicepath: /' \
+  -d '{
+ "devices": [
+   {
+     "device_id":   "temperature002",
+     "entity_name": "urn:ngsi-ld:Device:temperature002",
+     "entity_type": "TemperatureSensor"
+   }
+  ]
+}
+'
+
+

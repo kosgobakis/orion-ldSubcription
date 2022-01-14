@@ -1,0 +1,16 @@
+{
+    "@context": {
+        "type": "@type",
+        "id": "@id",
+        "ngsi-ld": "https://uri.etsi.org/ngsi-ld/",
+        "example": "https://ngsi-ld-tutorials.readthedocs.io/en/latest/datamodels.html#",
+        
+        "LoraDevice": "example:LoraDevice",
+
+        "temperatureCh3": "example:ch3",
+        "temperatureCh5": "example:ch5",
+
+        "TemperatureSensor": "example:TemperatureSensor",
+        "temperature": "https://w3id.org/saref#temperature"
+    }
+}
