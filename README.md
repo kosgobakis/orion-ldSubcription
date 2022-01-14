@@ -1,7 +1,8 @@
 # Problem with subscriptionOrion-LD  v1.0.0
 
-** Orion-LD 0.8.0 **
+## Orion-LD 0.8.0
 Set 0.8.0 in .env
+
 Run test, notification send
 ```json
 [
@@ -32,10 +33,11 @@ Run test, notification send
     "@context": "http://context/minimal.jsonld"
   }
 ]
-'''
+```
 
-** Orion-LD 1.0.0 **
+## Orion-LD 1.0.0 
 Set 1.0.0 in .env
+
 Run test, no subscription send
 ```json
 [
@@ -64,4 +66,4 @@ Run test, no subscription send
     "@context": "http://context/minimal.jsonld"
   }
 ]
-'''
+```
